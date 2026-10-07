@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/leetcode/graphql"
+  to = "/.netlify/functions/leetcode"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/github/contributions"
+  to = "/.netlify/functions/github-contributions"
+  status = 200
+  force = true
