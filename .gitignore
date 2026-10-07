@@ -1,0 +1,12 @@
+# Dependencies and generated frontend output
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Local environment files (the documented .env.example remains tracked)
+.env
+.env.local
+.env.*.local
+
+# Vercel local metadata
+.vercel/

@@ -1,0 +1,158 @@
+.leetcode-live {
+    border: 1px solid #ffffff1c;
+    background: linear-gradient(135deg, #17121d, #101017);
+    padding: 24px;
+    margin-bottom: 16px
+}
+
+.lc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: 10px 'DM Mono';
+    letter-spacing: .8px
+}
+
+.lc-head>div {
+    display: flex;
+    gap: 8px;
+    align-items: center
+}
+
+.lc-head svg {
+    color: #ffc559
+}
+
+.lc-head span {
+    color: #89899a
+}
+
+.lc-head a {
+    color: #ffd36d;
+    border: 1px solid #ffd36d66;
+    padding: 8px 10px
+}
+
+.lc-metrics {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 30px 0
+}
+
+.lc-metrics div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px
+}
+
+.lc-metrics b {
+    font-size: 23px;
+    letter-spacing: -.06em
+}
+
+.lc-metrics span {
+    font: 9px 'DM Mono';
+    color: #9b9baa
+}
+
+.lc-metrics div:nth-child(2) b {
+    color: #67e8b7
+}
+
+.lc-metrics div:nth-child(3) b {
+    color: #ffc958
+}
+
+.lc-metrics div:nth-child(4) b {
+    color: #ff7288
+}
+
+.lc-calendar {
+    display: grid;
+    grid-template-rows: repeat(7, 9px);
+    grid-auto-flow: column;
+    grid-auto-columns: 9px;
+    gap: 4px;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 21px 0;
+    border-top: 1px solid #ffffff18;
+    border-bottom: 1px solid #ffffff18
+}
+
+.lc-cell {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border-radius: 2px;
+    background: #ffffff12
+}
+
+.lc-cell.l1 {
+    background: #77491b
+}
+
+.lc-cell.l2 {
+    background: #b06a12
+}
+
+.lc-cell.l3 {
+    background: #ec9513
+}
+
+.lc-cell.l4 {
+    background: #ffd65d;
+    box-shadow: 0 0 8px #ffd65d66
+}
+
+.lc-cell:hover,
+.lc-cell:focus {
+    outline: 1px solid white;
+    transform: scale(1.3)
+}
+
+.lc-hover {
+    margin: 14px 0 0;
+    color: #a9a9b6;
+    font: 10px 'DM Mono'
+}
+
+.lc-empty {
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #a8a9b5;
+    font: 12px 'DM Mono'
+}
+
+.lc-empty a {
+    color: #ffcf61
+}
+
+@media(max-width:620px) {
+    .leetcode-live {
+        padding: 17px
+    }
+
+    .lc-calendar {
+        grid-template-rows: repeat(7, 8px);
+        grid-auto-columns: 8px;
+        gap: 3px
+    }
+
+    .lc-cell {
+        width: 8px;
+        height: 8px
+    }
+
+    .lc-metrics {
+        gap: 17px;
+        margin: 24px 0
+    }
+
+    .lc-metrics b {
+        font-size: 19px
+    }
+}

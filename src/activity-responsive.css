@@ -1,0 +1,52 @@
+/* Desktop keeps its original heatmap scale. Only compact phones shrink the cells. */
+@media (max-width: 620px) {
+  .heatmap-card,
+  .leetcode-live {
+    min-width: 0;
+  }
+
+  .heatmap-grid,
+  .lc-calendar {
+    width: 100%;
+    grid-template-columns: repeat(52, minmax(0, 1fr));
+    grid-auto-columns: unset;
+    column-gap: 1px;
+    row-gap: 2px;
+    justify-content: stretch;
+    overflow: visible;
+  }
+
+  .heatmap-grid {
+    grid-template-rows: repeat(7, 6px);
+  }
+
+  .lc-calendar {
+    grid-template-rows: repeat(7, 6px);
+  }
+
+  .heat-cell,
+  .lc-cell {
+    width: 100%;
+    min-width: 0;
+    height: 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .heatmap-card,
+  .leetcode-live {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .heatmap-grid,
+  .lc-calendar {
+    grid-template-rows: repeat(7, 5px);
+    row-gap: 1px;
+  }
+
+  .heat-cell,
+  .lc-cell {
+    height: 5px;
+  }
+}

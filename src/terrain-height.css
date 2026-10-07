@@ -1,0 +1,2 @@
+/* Make genuine activity read as a dramatic raised 3D skyline. */
+.pillar{animation:rise-tall .85s cubic-bezier(.12,.8,.2,1) both;animation-delay:var(--delay)}.pillar.p1:before,.pillar.p2:before,.pillar.p3:before,.pillar.p4:before,.pillar.p5:before,.pillar.p6:before,.pillar.p7:before{box-shadow:0 10px 22px #0006}.pillar.p1 i,.pillar.p2 i,.pillar.p3 i,.pillar.p4 i,.pillar.p5 i,.pillar.p6 i,.pillar.p7 i{box-shadow:0 0 18px #5bffd055}@keyframes rise-tall{from{opacity:0;transform:translateZ(-90px)}to{opacity:1;transform:translateZ(0)}}

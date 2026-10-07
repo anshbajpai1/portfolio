@@ -1,0 +1,2 @@
+/* Keep inactive days visible as a continuous base instead of empty holes. */
+.terrain-grid{gap:2px;background:#111820;padding:2px}.pillar{background:#17212a}.pillar.p0:before{background:#1a2630}.pillar.p0:after{background:#111a22}.pillar.p0 i{background:#263640}.terrain.leetcode .pillar.p0:before{background:#29221b}.terrain.leetcode .pillar.p0:after{background:#1c1712}.terrain.leetcode .pillar.p0 i{background:#453a2c}@media(max-width:850px){.terrain-grid{gap:2px}}@media(max-width:460px){.terrain-grid{gap:1px;padding:1px}}
