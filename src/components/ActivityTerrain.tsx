@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
+import { getGitHubContributions } from '../data/githubContributions';
 
 type Point = { date: string; count: number };
 const lcQuery = `query user($username:String!){matchedUser(username:$username){userCalendar{submissionCalendar}}}`;
@@ -25,7 +26,7 @@ function Scene({ points, mode, onHover }: { points: Point[]; mode: 'github' | 'l
 
 export function ActivityTerrain({ github, leetcode }: { github: string; leetcode: string }) {
   const [active, setActive] = useState<'github' | 'leetcode'>('github'); const [githubData, setGithubData] = useState<Point[]>([]); const [leetcodeData, setLeetcodeData] = useState<Point[]>([]); const [hover, setHover] = useState('Drag to orbit · hover a pillar for real weekly activity');
-  useEffect(() => { fetch(`https://api.github.com/users/${github}/events/public?per_page=100`).then(r => r.ok ? r.json() : []).then(events => { const values = new Map<string, number>(); events.forEach((event: { created_at: string; type: string; payload?: { commits?: unknown[] } }) => { const date = event.created_at.slice(0, 10); const count = event.type === 'PushEvent' ? Math.max(1, event.payload?.commits?.length || 1) : 1; values.set(date, (values.get(date) || 0) + count); }); setGithubData(activityWeeks(values)); }).catch(() => {}); }, [github]);
+  useEffect(() => { getGitHubContributions(github).then(days => setGithubData(activityWeeks(new Map(days.map(day => [day.date, day.count]))))).catch(() => {}); }, [github]);
   useEffect(() => { fetch(lcEndpoint, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ query: lcQuery, variables: { username: leetcode } }) }).then(r => r.ok ? r.json() : Promise.reject()).then(result => { const raw = JSON.parse(result.data.matchedUser.userCalendar.submissionCalendar || '{}') as Record<string, number>; setLeetcodeData(activityWeeks(new Map(Object.entries(raw).map(([stamp, count]) => [new Date(Number(stamp) * 1000).toISOString().slice(0, 10), count])))); }).catch(() => {}); }, [leetcode]);
   const points = active === 'github' ? githubData : leetcodeData; const total = useMemo(() => points.reduce((sum, point) => sum + point.count, 0), [points]);
   return <div className={`terrain webgl-terrain ${active}`}><div className="terrain-top"><div className="terrain-tabs"><button className={active === 'github' ? 'on' : ''} onClick={() => setActive('github')}>GITHUB 3D</button><button className={active === 'leetcode' ? 'on' : ''} onClick={() => setActive('leetcode')}>LEETCODE 3D</button></div><b>{total} {active === 'github' ? 'EVENTS' : 'SUBMISSIONS'}</b></div><div className="terrain-stage"><Scene points={points} mode={active} onHover={setHover}/></div><div className="terrain-bottom"><span>{hover}</span><span>LIVE 3D DATA TERRAIN</span></div></div>;
