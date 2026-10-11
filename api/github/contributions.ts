@@ -27,11 +27,18 @@ export default async function handler(request: Request): Promise<Response> {
 }
 
 function parseContributionDays(markup: string): Day[] {
+  const countsByCell = new Map<string, number>();
+  for (const match of markup.matchAll(/<tool-tip\b[^>]*\bfor="([^"]+)"[^>]*>([\s\S]*?)<\/tool-tip>/g)) {
+    const text = match[2].replace(/<[^>]+>/g, ' ');
+    const count = /(\d[\d,]*)\s+contributions?\b/i.exec(text)?.[1];
+    countsByCell.set(match[1], count ? Number(count.replace(/,/g, '')) : 0);
+  }
+
   const days: Day[] = [];
-  for (const tag of markup.match(/<td\\b[^>]*>/g) || []) {
+  for (const tag of markup.match(/<td\b[^>]*>/g) || []) {
     const date = attribute(tag, 'data-date');
-    const level = attribute(tag, 'data-level');
-    if (date && /^\\d{4}-\\d{2}-\\d{2}$/.test(date) && level && /^\\d+$/.test(level)) days.push({ date, count: Number(level) });
+    const id = attribute(tag, 'id');
+    if (date && id && /^\d{4}-\d{2}-\d{2}$/.test(date)) days.push({ date, count: countsByCell.get(id) || 0 });
   }
   return days;
 }
