@@ -16,5 +16,6 @@ import './spacing.css';
 import './activity-responsive.css';
 import './theme.css';
 import './personal-image.css';
+import './photo-hover.css';
 import './build-mode.css';
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>);
