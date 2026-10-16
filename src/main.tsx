@@ -4,6 +4,7 @@ import App from './App';
 import './styles.css';
 import './enhancements.css';
 import './activity.css';
+import './github-calendar.css';
 import './leetcode.css';
 import './terrain.css';
 import './terrain-orbit.css';
