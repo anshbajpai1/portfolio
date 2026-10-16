@@ -24,3 +24,13 @@
 .light-theme .github-calendar-card .l4 { background: #216e39; }
 .github-sync { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 16px; color: #9198a1; font: 10px 'DM Mono'; }
 .github-sync a { color: #9c93ff; }
+@media (max-width: 620px) {
+  .github-calendar-card { --gh-cell: 6px; --gh-gap: 1px; }
+  .github-calendar-card .heatmap-scroll { overflow-x: hidden; }
+  .github-calendar-card .heatmap-calendar { grid-template-columns: 24px minmax(0, 1fr); }
+  .github-calendar-card .heatmap-grid { grid-template-columns: repeat(53, minmax(0, 1fr)); grid-auto-columns: unset; gap: var(--gh-gap); justify-content: stretch; }
+  .github-calendar-card .heat-cell { width: 100%; height: var(--gh-cell); }
+}
+@media (max-width: 360px) {
+  .github-calendar-card { --gh-cell: 5px; }
+}
