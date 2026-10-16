@@ -57,7 +57,7 @@ export function ContributionHeatmap({ username }: { username: string }) {
     {!days ? <div className="heatmap-empty">{error ? 'GitHub could not be reached. Please retry.' : <><LoaderCircle className="spin" size={18}/> Syncing GitHub contributions…</>}</div> : <>
       <div className="heatmap-scroll">
         <div className="heatmap-calendar">
-          <div className="heatmap-months" style={{ gridTemplateColumns: `repeat(${weeks}, var(--gh-cell))` }}>{months.map(month => <span key={month.column} style={{ gridColumn: month.column, gridRow: 1 }}>{month.label}</span>)}</div>
+          <div className="heatmap-months" style={{ gridTemplateColumns: `repeat(${weeks}, minmax(var(--gh-cell), 1fr))` }}>{months.map(month => <span key={month.column} style={{ gridColumn: month.column, gridRow: 1 }}>{month.label}</span>)}</div>
           <div className="heatmap-weekdays"><span>Mon</span><span>Wed</span><span>Fri</span></div>
           <div className="heatmap-grid" role="group" aria-label="GitHub contribution calendar, Sunday to Saturday">
             {cells.map(day => <button key={day.date} className={`heat-cell l${day.level ?? Math.min(4, day.count)}`}
