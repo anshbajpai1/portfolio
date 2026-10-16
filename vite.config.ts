@@ -1,14 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-function parseContributionDays(markup: string) {
-  const countsByCell = new Map<string, number>();
-  for (const match of markup.matchAll(/<tool-tip\b[^>]*\bfor="([^"]+)"[^>]*>([\s\S]*?)<\/tool-tip>/g)) {
-    const count = /(\d[\d,]*)\s+contributions?\b/i.exec(match[2].replace(/<[^>]+>/g, ' '))?.[1];
-    countsByCell.set(match[1], count ? Number(count.replace(/,/g, '')) : 0);
-  }
-  return (markup.match(/<td\b[^>]*>/g) || []).flatMap(tag => { const date = /data-date="([^"]+)"/.exec(tag)?.[1]; const id = /\bid="([^"]+)"/.exec(tag)?.[1]; return date && id ? [{ date, count: countsByCell.get(id) || 0 }] : []; });
-}
+import { parseContributionDays } from './shared/github-calendar.mjs';
 
 const githubContributions = {
   name: 'github-contributions-proxy',
